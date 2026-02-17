@@ -48,6 +48,38 @@ ipcMain.handle('add-project', async (_, project) => {
     return db.addProject(project);
 });
 
+ipcMain.handle('get-contacts', async () => {
+    return db.getContacts();
+});
+
+ipcMain.handle('add-contact', async (_, contact) => {
+    return db.addContact(contact);
+});
+
+ipcMain.handle('update-contact', async (_, contact) => {
+    return db.updateContact(contact.id, contact);
+});
+
+ipcMain.handle('get-today-tasks', async (_, dateKey) => {
+    return db.getTodayTasks(dateKey);
+});
+
+ipcMain.handle('get-history-tasks', async () => {
+    return db.getHistoryTasks();
+});
+
+ipcMain.handle('add-today-task', async (_, task) => {
+    return db.addTodayTask(task);
+});
+
+ipcMain.handle('update-today-task-status', async (_, { id, status }) => {
+    return db.updateTodayTaskStatus(id, status);
+});
+
+ipcMain.handle('update-today-task', async (_, task) => {
+    return db.updateTodayTask(task.id, task);
+});
+
 ipcMain.handle('get-tasks', async (_, projectId) => {
     return db.getTasks(projectId);
 });
@@ -60,8 +92,8 @@ ipcMain.handle('update-task-status', async (_, { id, status }) => {
     return db.updateTaskStatus(id, status);
 });
 
-ipcMain.handle('update-project', async (_, { id, name }) => {
-    return db.updateProject(id, name);
+ipcMain.handle('update-project', async (_, project) => {
+    return db.updateProject(project.id, project);
 });
 
 ipcMain.handle('delete-project', async (_, id) => {
